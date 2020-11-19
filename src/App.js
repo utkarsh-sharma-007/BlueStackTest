@@ -5,11 +5,10 @@ import Content from './components/Content/Content'
 
 import {
   setTranslations,
-  setDefaultLanguage,
-  setLanguageCookie,
-  setLanguage
+  setDefaultLanguage
 } from 'react-switch-lang';
 
+//datepicker
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
 

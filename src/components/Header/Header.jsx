@@ -8,23 +8,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Slide from '@material-ui/core/Slide';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 
 import {
-  setTranslations,
-  setDefaultLanguage,
-  setLanguageCookie,
   setLanguage
 } from 'react-switch-lang';
 
@@ -70,8 +64,10 @@ export default function HideAppBar(props) {
       <HideOnScroll {...props}>
         <AppBar>
           <Container maxWidth="lg">
+            {/* header toolbar */}
             <Toolbar className="header-container" style={{justifyContent: "space-between"}}>
               <img src={logo} className="logo" alt="logo" />
+              {/* Select language */}
               <FormControl className={classes.formControl}>
                 <InputLabel id="demo-simple-select-outlined-label">Language</InputLabel>
                 <Select
@@ -82,10 +78,10 @@ export default function HideAppBar(props) {
                   label="Language"
                 >
                   <MenuItem value="en">
-                    <img src={us} style={{width: "30px"}}/>&nbsp;<span>US-EN</span>
+                    <img alt="US-EN" src={us} style={{width: "30px"}}/>&nbsp;<span>US-EN</span>
                   </MenuItem>
                   <MenuItem value="ge">
-                    <img src={germany} style={{width: "30px"}}/>&nbsp;<span>DE</span>
+                    <img alt="DE" src={germany} style={{width: "30px"}}/>&nbsp;<span>DE</span>
                   </MenuItem>
                 </Select>
               </FormControl>

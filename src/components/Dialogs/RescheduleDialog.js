@@ -7,8 +7,6 @@ import { DatePicker } from "@material-ui/pickers";
 export default function RescheduleDialog(props) {
     const [date, changeDate] = React.useState(new Date(props.date));
 
-    const {open} = props;
-
   return (
     <div>
       <Dialog
@@ -24,6 +22,7 @@ export default function RescheduleDialog(props) {
             openTo="date"
             value={date}
             onChange={(e)=>{
+                changeDate(e)
                 props.update(e.format("YYYY-MM-DD"))
             }}
         />

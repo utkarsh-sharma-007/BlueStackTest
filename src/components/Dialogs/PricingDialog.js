@@ -11,8 +11,6 @@ import Grid from '@material-ui/core/Grid';
 export default function PricingDialog(props) {
     const {open,app} = props;
 
-    console.log(app,'app')
-
   return (
     <div>
       <Dialog
@@ -24,7 +22,7 @@ export default function PricingDialog(props) {
         <DialogTitle id="alert-dialog-title">{app.name}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            <div><img src={app.image_url}/></div>
+            <div><img alt={app.name} src={app.image_url}/></div>
             <div>{app.region}</div>
           </DialogContentText>
           <Grid container spacing={3}>

@@ -22,7 +22,6 @@ import stats from '../../assets/images/statistics-report.png'
 function TableExample(props) {
   const [open, setOpen] = React.useState(false);
   const [schedule, setSchedule] = React.useState(false);
-  const [scheduleDate, setScheduleDate] = React.useState(new Date());
   const [app, setApp] = React.useState({});
 
   const {t,data} = props;
@@ -39,7 +38,6 @@ function TableExample(props) {
                       let a = {...app}
                       a.campaign_date = e;
                       props.updateData(a)
-                      // console.log(e)
                     }}
                   />
       }
@@ -53,10 +51,10 @@ function TableExample(props) {
           </Tr>
         </Thead>
         <Tbody>
-          {data.map(v=>{
+          {data.map((v,i)=>{
               const date = moment(v.campaign_date),
               days = date.diff(currentDate,'days');
-              return <Tr>
+              return <Tr key={i}>
                   <Td>
                       <div>
                           <h3>{moment(v.campaign_date).format('MMMM Do YYYY')}</h3>
@@ -65,7 +63,7 @@ function TableExample(props) {
                   </Td>
                   <Td>
                       <div className="image-with-text">
-                          <img src={v.image_url}/>
+                          <img alt={v.name} src={v.image_url}/>
                           <div>
                               <div>{v.name}</div>
                               <div>{v.region}</div>
@@ -73,13 +71,13 @@ function TableExample(props) {
                       </div>
                   </Td>
                   <Td>
-                      <div className="image-with-text" onClick={()=>{setOpen(!open); setApp(v);}}><img src={price}/><div>{t("viewPricing")}</div></div>
+                      <div className="image-with-text" onClick={()=>{setOpen(!open); setApp(v);}}><img alt="View Pricing" src={price}/><div>{t("viewPricing")}</div></div>
                   </Td>
                   <Td>
                       <div className="multiple-img-txt">
-                          <Tooltip title={v.csv}><div className="image-with-text"><img src={file}/><div>{t("csv")}</div></div></Tooltip>
-                          <Tooltip title={v.report}><div className="image-with-text"><img src={stats}/><div>{t("report")}</div></div></Tooltip>
-                          <div className="image-with-text"  onClick={()=>{setSchedule(!schedule); setApp(v);}}><img src={calendar}/><div>{t("schedule")}</div></div>
+                          <Tooltip title={v.csv}><div className="image-with-text"><img src={file} alt="CSV"/><div>{t("csv")}</div></div></Tooltip>
+                          <Tooltip title={v.report}><div className="image-with-text"><img src={stats} alt="Report"/><div>{t("report")}</div></div></Tooltip>
+                          <div className="image-with-text"  onClick={()=>{setSchedule(!schedule); setApp(v);}}><img src={calendar} alt="Reschedule"/><div>{t("schedule")}</div></div>
                       </div>
                   </Td>
               </Tr>

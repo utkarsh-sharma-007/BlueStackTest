@@ -7,7 +7,6 @@ import {
   translate,
 } from 'react-switch-lang';
 
-import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
@@ -28,7 +27,6 @@ function CustomTabs(props) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    console.log(newValue,'newValue')
   };
 
   const handleChangeIndex = (index) => {
@@ -36,31 +34,40 @@ function CustomTabs(props) {
   };
 
   const handleUpdate = (app) => {
-    console.log(app, "in handle upadte")
-    console.log(app.index);
     let data = initialData
     data[app.index] = app;
     setInitialData(data);
     setTheData(data)
   }
-  const currentDate = new Date()
-  // console.log(data)
+  const currentDate = moment(new Date());
+  currentDate.set({hour:0,minute:0,second:0,millisecond:0})
   
+  // setting the data for the three tabs
   const setTheData = (d) => {
     let u = [], l = [],p = [];
     d.forEach((v,i)=>{
       let date = moment(v.campaign_date);
-      console.log(date.diff(currentDate,'days'))
       if(date.diff(currentDate,'days')<0) p.push({...v,index:i})
       else if(date.diff(currentDate,'days')) u.push({...v,index:i})
       else l.push({...v,index:i})
     })
-    setUpcoming(u)
-    setPast(p)
-    setLive(l)
-    // console.log(upcoming,live,past)
+    setUpcoming(sortViaDate(u))
+    setPast(sortViaDate(p))
+    setLive(sortViaDate(l))
   }
 
+  const sortViaDate = (dates) => {
+    // console.log(dates)
+    dates.sort((b,a)=>{
+      // console.log(moment(b.campaign_date).diff(moment(a.campaign_date),'days'))
+      // if(moment(b.campaign_date).diff(moment(a.campaign_date),'days'))
+        return moment(b.campaign_date).diff(moment(a.campaign_date),'days')
+    })
+    // console.log(dates)
+    return dates
+  }
+
+  // Initially setting the data
   useEffect(()=>{
     setTheData(initialData)
   },[])
