@@ -14,6 +14,9 @@ import moment from 'moment';
 import PricingDialog from '../Dialogs/PricingDialog'
 import RescheduleDialog from '../Dialogs/RescheduleDialog'
 
+// toaster
+import {ToastsStore} from 'react-toasts';
+
 import price from '../../assets/images/Price.png'
 import calendar from '../../assets/images/calendar.png'
 import file from '../../assets/images/file.png'
@@ -34,6 +37,7 @@ function TableExample(props) {
                     close={()=>setSchedule(!schedule)} 
                     date={app.campaign_date} 
                     update={(e)=>{
+                      ToastsStore.success(`Date rescheduled for ${app.name} from ${app.campaign_date} to ${e}`)
                       setSchedule(!schedule)
                       let a = {...app}
                       a.campaign_date = e;

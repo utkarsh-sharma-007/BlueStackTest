@@ -11,6 +11,8 @@ import {
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
 
+// toaster
+import {ToastsContainer, ToastsStore} from 'react-toasts';
 
 import en from './assets/transalte/eng.json';
 import ge from './assets/transalte/german.json';
@@ -25,6 +27,7 @@ function App(props) {
         <Header/>
         <Content/>
       </div>
+      <ToastsContainer store={ToastsStore}/>
     </MuiPickersUtilsProvider>
 
   );
