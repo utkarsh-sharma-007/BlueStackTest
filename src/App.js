@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import Header from './components/Header/Header'
+import Content from './components/Content/Content'
+// import ReactFlagsSelect from 'react-flags-select';
 
-function App() {
+import {
+  setTranslations,
+  setDefaultLanguage,
+  setLanguageCookie,
+  setLanguage
+} from 'react-switch-lang';
+
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MomentUtils from '@date-io/moment';
+
+
+import en from './assets/transalte/eng.json';
+import ge from './assets/transalte/german.json';
+
+setTranslations({ en, ge });
+setDefaultLanguage('en');
+
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MuiPickersUtilsProvider utils={MomentUtils}>
+      <div className="App">
+        <Header/>
+        <Content/>
+      </div>
+    </MuiPickersUtilsProvider>
+
   );
 }
 
