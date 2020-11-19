@@ -1,7 +1,6 @@
 import './App.css'
 import Header from './components/Header/Header'
 import Content from './components/Content/Content'
-// import ReactFlagsSelect from 'react-flags-select';
 
 import {
   setTranslations,
